@@ -43,6 +43,14 @@ h1 {
   color: #30425b;
 }
 
+.toolbar-row {
+  margin-top: 1rem;
+}
+
+.search-field {
+  width: min(100%, 420px);
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

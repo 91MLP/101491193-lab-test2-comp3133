@@ -74,6 +74,19 @@ h1 {
   color: #42546b;
 }
 
+.status-badge {
+  width: fit-content;
+  margin: 0;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: #f3e7b4;
+  color: #6d4e19;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .detail-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));

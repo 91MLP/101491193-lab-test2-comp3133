@@ -14,6 +14,19 @@
   />
 </section>
 
+<section class="toolbar-row">
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Search characters</mat-label>
+    <input
+      matInput
+      [ngModel]="searchTerm()"
+      (ngModelChange)="onSearchChange($event)"
+      placeholder="Search by name, actor, species, or house"
+    />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</section>
+
 @if (loading()) {
   <section class="state-panel">
     <mat-spinner diameter="54" />
@@ -29,14 +42,14 @@
   <section class="results-meta">
     <p>
       Showing
-      <strong>{{ characters().length | number }}</strong>
+      <strong>{{ filteredCharacters().length | number }}</strong>
       characters for
       <strong>{{ selectedHouse() }}</strong>
     </p>
   </section>
 
   <section class="card-grid">
-    @for (character of characters(); track trackById($index, character)) {
+    @for (character of filteredCharacters(); track trackById($index, character)) {
       <mat-card class="character-card">
         <div class="poster-wrap">
           @if (character.image) {
@@ -58,7 +71,7 @@
           <div class="card-head">
             <h2>{{ character.name }}</h2>
             <mat-chip-set>
-              <mat-chip>{{ character.house || 'No House' }}</mat-chip>
+              <mat-chip>{{ character.house | houseLabel }}</mat-chip>
             </mat-chip-set>
           </div>
 

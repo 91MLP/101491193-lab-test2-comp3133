@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { Character } from '../../models/character.model';
+import { HouseLabelPipe } from '../../pipes/house-label.pipe';
 import { HarryPotterService } from '../../services/harry-potter.service';
 
 @Component({
@@ -19,6 +20,7 @@ import { HarryPotterService } from '../../services/harry-potter.service';
     MatDividerModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    HouseLabelPipe,
   ],
   templateUrl: './character-details.component.html',
   styleUrl: './character-details.component.scss',
@@ -40,7 +42,7 @@ export class CharacterDetailsComponent {
 
     return [
       { label: 'Species', value: character.species || 'Unknown' },
-      { label: 'House', value: character.house || 'No House' },
+      { label: 'House', value: character.house?.trim() ? character.house : 'No House' },
       { label: 'Wizard', value: character.wizard ? 'True' : 'False' },
       { label: 'Ancestry', value: character.ancestry || 'Unknown' },
       { label: 'Actor', value: character.actor || 'Unknown' },

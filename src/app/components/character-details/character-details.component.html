@@ -34,10 +34,19 @@
           <h1>{{ selectedCharacter.name }}</h1>
           <p class="summary">
             {{ selectedCharacter.name }} belongs to
-            <strong>{{ selectedCharacter.house || 'No House' }}</strong>
+            <strong>{{ selectedCharacter.house | houseLabel }}</strong>
             and is portrayed by
             <strong>{{ selectedCharacter.actor || 'Unknown' }}</strong>.
           </p>
+
+          @switch (selectedCharacter.wizard) {
+            @case (true) {
+              <p class="status-badge">Status: Wizard</p>
+            }
+            @default {
+              <p class="status-badge">Status: Non-wizard</p>
+            }
+          }
 
           <mat-divider />
 
