@@ -3,7 +3,10 @@
   "outputDirectory": "dist/101491193-lab-test2-comp3133/browser",
   "routes": [
     {
-      "src": "/(.*)",
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
       "dest": "/index.html"
     }
   ]

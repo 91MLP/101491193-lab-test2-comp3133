@@ -1,59 +1,108 @@
 # 101491193-lab-test2-comp3133
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
+## App Description
+This project is an Angular application built for COMP 3133 Lab Test 2 using a Harry Potter theme. It consumes the public Harry Potter API and presents a styled interface for browsing characters, filtering them by house, and viewing detailed information for a selected character.
 
-## Development server
+The app is implemented with Angular standalone components, Angular Router, Angular Material, and a dedicated service layer for API communication.
 
-To start a local development server, run:
+## Features Implemented
+- Display a full character list using the Harry Potter API.
+- Show key fields for each character, including `name`, `house`, and `image`.
+- Filter characters by house using a dropdown component.
+- Support characters with no house using a dedicated `No House` filter.
+- Open a character details page using route parameters.
+- Display required detailed fields:
+  `name`, `species`, `house`, `wizard`, `ancestry`, `wand.wood`, `wand.core`, `wand.length`, `actor`, and `image`.
+- Use Angular Material components for layout and interface styling.
+- Deploy the application to Vercel for public access.
 
+## Tech Stack
+- Angular 21
+- Angular Material
+- TypeScript
+- SCSS
+- Harry Potter API: `https://hp-api.onrender.com/`
+
+## Live Demo
+- Vercel: `https://101491193-lab-test2-comp3133.vercel.app`
+
+## Screenshots
+
+### 1. Character List - All Houses
+This screen shows the default character list page with all available Harry Potter characters.
+
+![Character List - All Houses](docs/screenshots/character-list-all-houses.png)
+
+### 2. Character List - Gryffindor Filter
+This screen shows the house filter in action by displaying only Gryffindor characters.
+
+![Character List - Gryffindor](docs/screenshots/character-list-gryffindor.png)
+
+### 3. Character List - No House Filter
+This screen shows characters who do not belong to any house.
+
+![Character List - No House](docs/screenshots/character-list-no-house.png)
+
+### 4. Character Details
+This screen shows the details page for Harry Potter, including the required detailed fields and wand information.
+
+![Character Details - Harry Potter](docs/screenshots/character-details-harry-potter.png)
+
+## Instructions To Run The Project
+
+### 1. Clone the repository
 ```bash
-ng serve
+git clone https://github.com/91MLP/101491193-lab-test2-comp3133.git
+cd 101491193-lab-test2-comp3133
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 2. Use Node.js 22
+This project is configured for Node.js 22.
 
 ```bash
-ng generate component component-name
+nvm use
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+If Node 22 is not installed yet:
 
 ```bash
-ng generate --help
+nvm install 22
+nvm use 22
 ```
 
-## Building
-
-To build the project run:
-
+### 3. Install dependencies
 ```bash
-ng build
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
+### 4. Start the development server
 ```bash
-ng test
+npm start
 ```
 
-## Running end-to-end tests
+Then open:
 
-For end-to-end (e2e) testing, run:
+```text
+http://localhost:4200
+```
 
+### 5. Build for production
 ```bash
-ng e2e
+npm run build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Project Structure
+```text
+src/app/
+  components/
+    character-filter/
+    character-list/
+    character-details/
+  models/
+  services/
+```
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## API Endpoints Used
+- All characters: `https://hp-api.onrender.com/api/characters`
+- Characters by house: `https://hp-api.onrender.com/api/characters/house/:house`
+- Character details by id: `https://hp-api.onrender.com/api/character/:id`
