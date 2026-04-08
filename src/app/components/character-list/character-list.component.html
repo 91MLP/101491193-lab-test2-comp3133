@@ -1,0 +1,74 @@
+<section class="page-hero">
+  <div>
+    <p class="eyebrow">Harry Potter API Explorer</p>
+    <h1>Browse every witch and wizard by house.</h1>
+    <p class="hero-copy">
+      This page lists Harry Potter characters, lets you filter them by house, and opens a detailed
+      character profile.
+    </p>
+  </div>
+
+  <app-character-filter
+    [selectedHouse]="selectedHouse()"
+    (houseChange)="onHouseChange($event)"
+  />
+</section>
+
+@if (loading()) {
+  <section class="state-panel">
+    <mat-spinner diameter="54" />
+    <p>Loading character data...</p>
+  </section>
+} @else if (errorMessage()) {
+  <section class="state-panel error-panel">
+    <mat-icon>error</mat-icon>
+    <p>{{ errorMessage() }}</p>
+    <button mat-raised-button type="button" (click)="onHouseChange(selectedHouse())">Retry</button>
+  </section>
+} @else {
+  <section class="results-meta">
+    <p>
+      Showing
+      <strong>{{ characters().length | number }}</strong>
+      characters for
+      <strong>{{ selectedHouse() }}</strong>
+    </p>
+  </section>
+
+  <section class="card-grid">
+    @for (character of characters(); track trackById($index, character)) {
+      <mat-card class="character-card">
+        <div class="poster-wrap">
+          @if (character.image) {
+            <img
+              [src]="character.image"
+              [alt]="character.name"
+              class="character-image"
+              loading="lazy"
+            />
+          } @else {
+            <div class="image-fallback">
+              <mat-icon>image_not_supported</mat-icon>
+              <span>No image</span>
+            </div>
+          }
+        </div>
+
+        <mat-card-content>
+          <div class="card-head">
+            <h2>{{ character.name }}</h2>
+            <mat-chip-set>
+              <mat-chip>{{ character.house || 'No House' }}</mat-chip>
+            </mat-chip-set>
+          </div>
+
+          <p class="actor-line">Actor: {{ character.actor || 'Unknown' }}</p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <a mat-stroked-button [routerLink]="['/characters', character.id]">View details</a>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </section>
+}

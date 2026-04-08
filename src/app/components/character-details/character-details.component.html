@@ -1,0 +1,56 @@
+@if (loading()) {
+  <section class="state-panel">
+    <mat-spinner diameter="54" />
+    <p>Loading character details...</p>
+  </section>
+} @else if (errorMessage()) {
+  <section class="state-panel error-panel">
+    <mat-icon>error</mat-icon>
+    <p>{{ errorMessage() }}</p>
+    <a mat-raised-button routerLink="/characters">Back to list</a>
+  </section>
+} @else if (character(); as selectedCharacter) {
+  <section class="details-shell">
+    <a mat-stroked-button routerLink="/characters" class="back-link">
+      <mat-icon>arrow_back</mat-icon>
+      Back to characters
+    </a>
+
+    <mat-card class="details-card">
+      <section class="details-layout">
+        <div class="image-pane">
+          @if (selectedCharacter.image) {
+            <img [src]="selectedCharacter.image" [alt]="selectedCharacter.name" class="detail-image" />
+          } @else {
+            <div class="image-fallback">
+              <mat-icon>person</mat-icon>
+              <span>No image available</span>
+            </div>
+          }
+        </div>
+
+        <div class="content-pane">
+          <p class="eyebrow">Character Details</p>
+          <h1>{{ selectedCharacter.name }}</h1>
+          <p class="summary">
+            {{ selectedCharacter.name }} belongs to
+            <strong>{{ selectedCharacter.house || 'No House' }}</strong>
+            and is portrayed by
+            <strong>{{ selectedCharacter.actor || 'Unknown' }}</strong>.
+          </p>
+
+          <mat-divider />
+
+          <div class="detail-grid">
+            @for (detail of detailRows(); track detail.label) {
+              <div class="detail-item">
+                <span class="detail-label">{{ detail.label }}</span>
+                <strong class="detail-value">{{ detail.value }}</strong>
+              </div>
+            }
+          </div>
+        </div>
+      </section>
+    </mat-card>
+  </section>
+}

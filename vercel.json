@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/101491193-lab-test2-comp3133/browser",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}

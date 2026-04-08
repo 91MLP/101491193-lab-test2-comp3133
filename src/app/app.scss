@@ -1,0 +1,62 @@
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: 1rem;
+  background: rgba(28, 36, 54, 0.92);
+  color: #f6f1d5;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.22);
+}
+
+.brand-block {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.brand-subtitle {
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.top-nav a.active-link {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.app-shell {
+  min-height: calc(100vh - 64px);
+}
+
+@media (max-width: 720px) {
+  .app-toolbar {
+    min-height: 72px;
+    padding-block: 0.5rem;
+  }
+
+  .brand-title {
+    font-size: 0.95rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.72rem;
+  }
+}
